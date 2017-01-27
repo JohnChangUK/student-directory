@@ -11,3 +11,6 @@ puts "Freddy Krueger"
 puts "The Joker"
 puts "Joffrey Baratheon"
 puts "Norman Bates"
+
+print "Overall, we have\nprint 11\nputs great students"
+#Must be in double quotes!
