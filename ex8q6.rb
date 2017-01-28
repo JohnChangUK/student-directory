@@ -1,5 +1,5 @@
-#Print the students whose name BEGINS with a specific letter 'J'
-#We are going to give the letter as an argument to the print() method
+#Using the center(). e.g...
+#"Example".center(10) => " Example  "
 
 def input_students
   puts "Please enter the names of the students"
@@ -26,11 +26,9 @@ def print_header
   puts "----------------"
 end
 
-def print(students, begin_letter)
-    students.each_with_index do |student|
-      if student[:name][0] == begin_letter
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-end
+def print(students)
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)".center(70, "-")
 end
 end
 
@@ -41,5 +39,5 @@ end
 
 students = input_students
 print_header
-print(students, 'J')
+print(students)
 print_footer(students)
