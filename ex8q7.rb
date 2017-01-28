@@ -1,4 +1,7 @@
-#Adding more information, such as hobbies, country of birth and height.
+#Getting the information about cohort, converting it to a symbol 'to_sym'
+#Added a new method 'checking_cohort'
+#Created an array of all 12 months, checking if user made a typo if the user's input does not match
+#the months in the array. if a typo has been made, a random month out of the 12 will be assigned.
 def input_students
   puts "Please enter the names of the students"
 
