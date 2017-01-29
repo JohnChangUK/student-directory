@@ -3,7 +3,7 @@
 
 def input_students
   puts "Please enter the names of the students"
-
+  puts "To finish, just hit return twice"
   #get the first name
   name = gets.delete("\n")
   #Get the value of the cohort
@@ -11,7 +11,6 @@ def input_students
   cohort = gets.delete("\n")
   #Create an empty array, to store our values in
   students = []
-  puts "To finish, just hit return twice"
   #While the name is not empty, repeat this code
   puts "What are your hobbies Sir/Madam?"
   hobbies = gets.delete("\n")
