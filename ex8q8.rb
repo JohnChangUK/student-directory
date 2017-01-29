@@ -1,6 +1,6 @@
-#Adding more information, such as hobbies, country of birth and height.
 #Displaying the students by cohort
 #Making a list of existing cohorts, in the students array
+
 def input_students
   puts "Please enter the names of the students"
 

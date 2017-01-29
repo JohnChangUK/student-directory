@@ -1,46 +1,54 @@
-#Adding more information, such as hobbies, country of birth and height.
-#Displaying the students by cohort
-#Making a list of existing cohorts, in the students array
+# Remove "\n"(newline characters) from a string. delete(), tr(), strip() methods.
+#When referencing newline characters, always use double quotes ""
+
 def input_students
   puts "Please enter the names of the students"
 
   #get the first name
-  name = gets.chomp
+  name = gets.delete("\n")
   #Get the value of the cohort
   puts "Which cohort is this student in?"
-  cohort = gets.chomp
+  cohort = gets.delete("\n")
   #Create an empty array, to store our values in
   students = []
   puts "To finish, just hit return twice"
   #While the name is not empty, repeat this code
   puts "What are your hobbies Sir/Madam?"
-  hobbies = gets.chomp
+  hobbies = gets.delete("\n")
   puts "Just curious... which country were you born in?"
-  country_of_birth = gets.chomp
+  country_of_birth = gets.delete("\n")
   puts "Last question... How tall are you? in cm please!"
-  height = gets.chomp
+  height = gets.delete("\n")
   #While the name is not empty, repeat this code
   while !name.empty? do
     cohort = checking_cohort(cohort) #Default value will be November
     #add the student hash to the array
     students << {name: name, cohort: cohort.to_sym, hobbies: hobbies, country_of_birth: country_of_birth,
     height: height}
-    puts "Now we have #{students.count} students"
+    puts "Now we have #{students.count} student#{sing_plural(students)}"
     #get another name from the user
     puts "What is the other student's name?"
-    name = gets.chomp
+    # .tr returns a copy if the str with the characters in from_Str,
+    #replaced by corresponding characters in to_str
+    #"hello".tr('el', 'ip') => "hippo"
+    name = gets.tr("\n", "")
     break if name.empty?
     puts "Which cohort is the student in?"
-    cohort = gets.chomp
+    #strip removes any white space and any "\n", "\t", "\r" etc.
+    cohort = gets.strip
     puts "What are your hobbies Sir/Madam?"
-    hobbies = gets.chomp
+    hobbies = gets.strip
     puts "Just curious... which country were you born in?"
-    country_of_birth = gets.chomp
+    country_of_birth = gets.strip
     puts "Last question... How tall are you? in cm please!"
-    height = gets.chomp
+    height = gets.strip
 end
   #return the array of students
   students
+end
+
+def sing_plural(students)
+  students.count > 1 ? 's' : ''
 end
 
 def checking_cohort(which_cohort)
@@ -66,8 +74,8 @@ def present_students(students)
   # a.uniq => ['a', 'b', 'c']
 end
 
-def print_header
-  puts "The students of Villains Academy"
+def print_header(students)
+  puts "The student#{sing_plural(students)} of Villains Academy"
   puts "----------------"
 end
 
@@ -78,16 +86,18 @@ def print(students)
     puts "The students in #{cohort} cohort are..."
     students.each do |student|
       puts "#{student[:name]}" if student[:cohort] == cohort
-end
+      #.compact removes all nil elements
+      #['a', nil, 'b', nil].compact => ['a', 'b']
+end.compact
 end
 end
 
-def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+def print_footer(students)
+  puts "Overall, we have #{students.count} great student#{sing_plural(students)}"
 end
 #We still need to call the methods to invoke it
 
 students = input_students
-print_header
+print_header(students)
 print(students)
 print_footer(students)

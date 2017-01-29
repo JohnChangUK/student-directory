@@ -1,6 +1,6 @@
-#Adding more information, such as hobbies, country of birth and height.
 #Displaying the students by cohort
 #Making a list of existing cohorts, in the students array
+
 def input_students
   puts "Please enter the names of the students"
 
@@ -25,7 +25,7 @@ def input_students
     #add the student hash to the array
     students << {name: name, cohort: cohort.to_sym, hobbies: hobbies, country_of_birth: country_of_birth,
     height: height}
-    puts "Now we have #{students.count} students"
+    puts "Now we have #{students.count} student#{sing_plural(students)}"
     #get another name from the user
     puts "What is the other student's name?"
     name = gets.chomp
@@ -41,6 +41,10 @@ def input_students
 end
   #return the array of students
   students
+end
+
+def sing_plural(students)
+  students.count > 1 ? 's' : ''
 end
 
 def checking_cohort(which_cohort)
@@ -66,8 +70,8 @@ def present_students(students)
   # a.uniq => ['a', 'b', 'c']
 end
 
-def print_header
-  puts "The students of Villains Academy"
+def print_header(students)
+  puts "The student#{sing_plural(students)} of Villains Academy"
   puts "----------------"
 end
 
@@ -82,12 +86,12 @@ end
 end
 end
 
-def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+def print_footer(students)
+  puts "Overall, we have #{students.count} great student#{sing_plural(students)}"
 end
 #We still need to call the methods to invoke it
 
 students = input_students
-print_header
+print_header(students)
 print(students)
 print_footer(students)
