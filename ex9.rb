@@ -1,6 +1,7 @@
 
+@students = []
+
 def interactive_menu
-  students = []
   loop do
   #1. print the mnu and ask the user what to do
   puts "1. Input the students"
