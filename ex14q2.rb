@@ -1,4 +1,5 @@
-#Creating add_students() to append name and cohort to @students array.
+#Make students.csv load by default when no file is given on startup.
+#Method try_load_students() would need to be changed
 
 @students = [] #An empty array accessible to all methods
 
@@ -97,7 +98,8 @@ def load_students(filename = "students.csv")
 end
 
 def try_load_students
-  filename = ARGV.first #first argument from the command line
+  #students.csv will be uploaded by default
+  filename = ARGV.first || "students.csv"#first argument from the command line
   return if filename.nil? #Get out of the method if it isn't given
   if File.exists?(filename) # If it exists
     load_students(filename)
