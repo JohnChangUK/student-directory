@@ -1,3 +1,5 @@
+#Creating add_students() to append name and cohort to @students array.
+
 @students = [] #An empty array accessible to all methods
 
 def print_menu
