@@ -14,6 +14,8 @@ def print_menu
 end
 
 def interactive_menu
+  @first ||= true
+  try_load_students if @first == true
   loop do
     print_menu
     process(STDIN.gets.chomp)
@@ -27,9 +29,9 @@ def interactive_menu
     when "2"
       show_students
     when "3"
-      save_students
+      save_students(ask_file)
     when "4"
-      load_students
+      load_students(ask_file)
     when "9"
       puts "Thank you for your time. Hope to see you again!"
       exit
@@ -83,7 +85,7 @@ end
 
 def save_students(filename)
   if File.exists?(filename)
-  puts "You chose to save the student list to the 'students.csv' file!"
+  puts "You chose to save the student list to the #{filename} file!"
   #Open the file for writing
   file = File.open(filename, "w")
   #iterate over the array of students
@@ -94,7 +96,7 @@ def save_students(filename)
     file.puts csv_line
   end
   file.close
-  puts "#{students.count} students saved to file"
+  puts "#{@students.count} students saved to file"
 else
   file_nonexistent
 end
@@ -122,6 +124,7 @@ def try_load_students
   if File.exists?(filename) # If it exists
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
+    @first = "done"
   else #if it doesn't exist
     puts "Sorry, #{filename} doesn't exist."
     exit #Quit the program
@@ -134,6 +137,7 @@ end
 
 def ask_file
   print "Which file would you like to open?"
+  print ":"
   answer = STDIN.gets.chomp
 end
 
