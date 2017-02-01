@@ -1,3 +1,5 @@
+#Added default value "students.csv" file to the ask_file()
+
 @name = ""
 @cohort = ""
 @file = "students.csv"
@@ -87,6 +89,9 @@ def input_students
     puts "Which file would you like to open?"
     puts "If no option is given, a default 'students.csv' file will be opened"
     @file = STDIN.gets.chomp
+    if @file = ''
+      @file = "students.csv"
+    end
   end
 
   def save_students
@@ -102,7 +107,7 @@ def input_students
   def load_students
     ask_file
     CSV.open(@file, "r") do |csv|
-      csv.readlines each do |line|
+      csv.readlines.each do |line|
         @name, @cohort = line[0], line[1]
         add_students
       end
